@@ -1,4 +1,4 @@
-# yasm
+# YASM
 Yet Another State Machine library - a function pointer based state machine library for arduino
 
 A library for creating and managing states machines based on function pointers.
@@ -37,6 +37,7 @@ void State3()
 
 
 ***********  Complete tour : ***********************
+
 The YASM class provide the following control and timing functions and datas :
 class YASM{
 	public:
@@ -49,29 +50,44 @@ class YASM{
 		boolean elapsed(unsigned long);
 		boolean periodic(unsigned long);
 		boolean isFirstRun;
+		
     
-YASM() is class constructor, called when creating you state machine object :
+YASM() 
+is class constructor, called when creating your state machine object :
 YASM MyMachine;
 
-void next(void (*nextstateptr)() ) is the function to call when requesting a state change or when giving the initial state 
-to te machine :
+
+void next(void (*nextstate)() ) 
+is the function to call when requesting a state change or when giving the initial state to te machine :
 MyMachine.next(StateX);
 
-boolean run() is the update function. You need to constantly call this function to keep the machine running. Each time the 
-function is called the current state function is launched. It returns true if the machine is actually running or false if it
-is stopped (or not initialized).
+boolean run() 
+is the update function. You need to keep calling this function to keep the machine running. 
+Each time the function is called the current state function is launched. It returns true if the machine is actually 
+running or false if it is stopped (or not initialized).
 
-void stop() stops the machine. This function can be called at any moment, even from inside the current running state. It
-causes the machine to stop so any further call to run() will do nothing. It also records what the current state was so it
-can be resumed by :
+void stop() 
+stops the machine. This function can be called at any moment, even from inside the current running state. It
+causes the machine to stop so any further call to run() will do nothing and return false. It also records what the current 
+state was so it can be resumed by :
 
-void resume() resume the machine execcution to the last used state. A stopped machine can also be restarted using next(state)
-to restart from another state.
+void resume() 
+resume the machine execcution to the last used state. 
+A stopped machine can also be restarted using next(state) to restart from another state.
 
-unsigned long timeOnState() returns the time in milliseconds spent in the current state since the last state change.
+unsigned long timeOnState() 
+returns the time in milliseconds spent in the current state since the last state change.
 
-boolean elapsed(timeout) returns true if the timeout (in ms) is elapsed since last state change. It is very convenient to 
-implement  
+boolean elapsed(timeout) 
+returns true if the timeout (in ms) is elapsed since last state change. It is very convenient to 
+implement delays. Please see blinkLed1 example.
+
+boolean periodic(period); 
+returns true periodically, everytime it is called after the period time (in ms) is elapsed (while in the same state)
+Please see blinkLed2 example.
+
+boolean isFirstRun() 
+returns true if called during the first execution of a state, false otherwise.
 
 
 

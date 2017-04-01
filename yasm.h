@@ -35,21 +35,23 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA */
 #include "Arduino.h"
 class YASM{
 	public:
-		YASM(){pState=YASM::nop;};
+		YASM(){_pState=YASM::nop;};
 		void next(void (*)() );
 		boolean run();
 		void stop();
-		void resume();
-		unsigned long timeOnState();
-		boolean elapsed(unsigned long);
-		boolean periodic(unsigned long);
-		boolean isFirstRun;
+		void resume(){YASM::_pState=YASM::_pLastState;};
+		unsigned long timeOnState(){return (millis()-YASM::_enterTime);};
+		bool elapsed(unsigned long);
+		bool periodic(unsigned long);
+		bool isFirstRun(){return YASM::_isFirstRun;};
+		int runCount(){return YASM::_runCount;};
 	private:
-		void (*pState)();
-		void (*pLastState)();
-		unsigned long enterTime;	
-		unsigned long lastTime;
-		double runCount;
+		void (*_pState)();
+		void (*_pLastState)();
+		unsigned long _enterTime;	
+		unsigned long _lastTime;
+		double _runCount;
 		static void nop(){};
+		bool _isFirstRun;
 };
 #endif

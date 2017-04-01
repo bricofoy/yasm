@@ -93,7 +93,7 @@ void S1()
 {
   static int i=0;
   
-  if (Machine.isFirstRun) Serial.print("first run");
+  if (Machine.isFirstRun()) Serial.print("first run");
   else Serial.print("         ");
   
   Serial.print(" state1 ");
@@ -107,7 +107,7 @@ void S1()
 // state 2
 void S2()
 {
-  if (Machine.isFirstRun) Serial.print("fisrt run");
+  if (Machine.isFirstRun()) Serial.print("fisrt run");
   else Serial.print("         ");
   Serial.print(" state2  ");
   Machine.stop();
