@@ -41,15 +41,16 @@ void State3()
 The YASM class provide the following control and timing functions and datas :
 class YASM{
 	public:
-		YASM(){pState=YASM::nop;};
+		YASM();
 		void next(void (*)() );
-		boolean run();
+		bool run();
 		void stop();
 		void resume();
 		unsigned long timeOnState();
-		boolean elapsed(unsigned long);
-		boolean periodic(unsigned long);
-		boolean isFirstRun;
+		bool elapsed(unsigned long);
+		bool periodic(unsigned long);
+		bool isFirstRun();
+		unsigned int runCount();
 		
     
 YASM() 
@@ -61,7 +62,7 @@ void next(void (*nextstate)() )
 is the function to call when requesting a state change or when giving the initial state to te machine :
 MyMachine.next(StateX);
 
-boolean run() 
+bool run() 
 is the update function. You need to keep calling this function to keep the machine running. 
 Each time the function is called the current state function is launched. It returns true if the machine is actually 
 running or false if it is stopped (or not initialized).
@@ -78,16 +79,22 @@ A stopped machine can also be restarted using next(state) to restart from anothe
 unsigned long timeOnState() 
 returns the time in milliseconds spent in the current state since the last state change.
 
-boolean elapsed(timeout) 
+bool elapsed(timeout) 
 returns true if the timeout (in ms) is elapsed since last state change. It is very convenient to 
 implement delays. Please see blinkLed1 example.
 
-boolean periodic(period); 
+bool periodic(period); 
 returns true periodically, everytime it is called after the period time (in ms) is elapsed (while in the same state)
 Please see blinkLed2 example.
 
-boolean isFirstRun() 
+bool isFirstRun() 
 returns true if called during the first execution of a state, false otherwise.
+
+unsigned int runCount()
+returns the number of time current state have been called since the next state change.
+Usefull to implement non blocking "for" loops inside a state.
+
+
 
 
 

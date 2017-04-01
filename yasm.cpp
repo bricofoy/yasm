@@ -13,7 +13,7 @@ void YASM::next(void (*pnextstate)())
 	_pState = pnextstate; 
 }
 
-boolean YASM::run()
+bool YASM::run()
 {
 	if(_pState==YASM::nop) return false; //check if the machine is currently stopped
 										//and just return false if this is the case
@@ -22,7 +22,7 @@ boolean YASM::run()
 	_pState(); //run the current state
 		
 	//if pState is the same now than before running it means we did not got state 
-	//change request during pState() execution so next time we again will run the 
+	//change request during _pState() execution so next time we again will run the 
 	//same state, so we clear the flag and increment runs counter
 	if (_pState==_pLastState) {
 		_isFirstRun = false; 
@@ -35,7 +35,7 @@ void YASM::stop()
 {
 	//Same check done at the end of run() for the case when a 
 	//state just run once and calls itself for stop().
-	//Without doing so here isFirstRun and runCount are not updated prior to 
+	//Without doing so here _isFirstRun and _runCount are not updated prior to 
 	//stop the machine, and this leads to wrong values used on resume()
 	if (_pState==_pLastState) {
 		_isFirstRun = false; 

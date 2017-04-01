@@ -37,14 +37,14 @@ class YASM{
 	public:
 		YASM(){_pState=YASM::nop;};
 		void next(void (*)() );
-		boolean run();
+		bool run();
 		void stop();
 		void resume(){YASM::_pState=YASM::_pLastState;};
 		unsigned long timeOnState(){return (millis()-YASM::_enterTime);};
 		bool elapsed(unsigned long);
 		bool periodic(unsigned long);
 		bool isFirstRun(){return YASM::_isFirstRun;};
-		int runCount(){return YASM::_runCount;};
+		unsigned int runCount(){return YASM::_runCount;};
 	private:
 		void (*_pState)();
 		void (*_pLastState)();
