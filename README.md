@@ -1,7 +1,7 @@
 # YASM
 Yet Another State Machine library - a function pointer based state machine library for arduino
 
-A library for creating and managing states machines based on function pointers.
+A library for easy creation and managing of states machines based on function pointers.
 
 ***********  Quick start : ***********************
 
