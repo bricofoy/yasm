@@ -40,17 +40,34 @@ void BTN::btn_debounce()
 void BTN::btn_check()
 {
 	if(BTN::_this->_SM.elapsed(BTN_D_LONGCLICK)) { 
-		BTN::_this->_SM.next(BTN::btn_longpress); 
+		BTN::_this->_SM.next(BTN::btn_longclick); 
 		BTN::_this->_state = BTN_LONGCLICK;
 		return;
 	}
 	if(!BTN::_this->_input) {
-		BTN::_this->_SM.next(BTN::btn_wait);
-		BTN::_this->_state = BTN_CLICK;
+		BTN::_this->_SM.next(BTN::btn_checkdouble);
 	}
 }
 
-void BTN::btn_longpress()
+void BTN::btn_checkdouble()
+{
+	if(BTN::_this->_SM.elapsed(BTN_D_DOUBLECLICK)) { 
+		BTN::_this->_SM.next(BTN::btn_wait); 
+		BTN::_this->_state = BTN_CLICK;
+		return;
+	}
+	if(BTN::_this->_input) {
+		BTN::_this->_SM.next(BTN::btn_doubleclick);
+		BTN::_this->_state = BTN_DOUBLECLICK;
+	}
+}
+
+void BTN::btn_doubleclick()
+{
+	if(!BTN::_this->_input) BTN::_this->_SM.next(BTN::btn_wait);
+}
+
+void BTN::btn_longclick()
 {
 	if(!BTN::_this->_input) BTN::_this->_SM.next(BTN::btn_wait);
 }

@@ -11,8 +11,9 @@
 #define BTN_DOUBLECLICK	8
 
 //delays (ms)
-#define BTN_D_DEBOUNCE	5
-#define BTN_D_LONGCLICK	700
+#define BTN_D_DEBOUNCE		5
+#define BTN_D_LONGCLICK		700
+#define BTN_D_DOUBLECLICK	100
 
 class BTN{
 	public:
@@ -27,6 +28,8 @@ class BTN{
 		static void btn_wait();
 		static void btn_debounce();
 		static void btn_check();
-		static void btn_longpress();	
+		static void btn_checkdouble();
+		static void btn_longclick();
+		static void btn_doubleclick();
 };
 #endif
