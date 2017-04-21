@@ -20,6 +20,7 @@ class BTN{
 		BTN(){_SM.next(BTN::btn_wait);};
 		void update(bool);
 		bool state(byte);
+		byte state(void);
 	private:
 		YASM _SM;
 		bool _input;

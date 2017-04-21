@@ -24,6 +24,13 @@ bool BTN::state(byte state)
 	return false;
 }
 
+byte BTN::state()
+{
+	byte ret=_state;
+	_state=BTN_OFF;
+	return ret;
+}
+
 /////////////button state machine///////////////
 
 void BTN::btn_wait()
