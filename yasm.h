@@ -41,8 +41,8 @@ class YASM{
 		void stop();
 		void resume(){YASM::_pState=YASM::_pLastState;};
 		unsigned long timeOnState(){return (millis()-YASM::_enterTime);};
-		bool elapsed(unsigned long);
-		bool periodic(unsigned long);
+		bool elapsed(unsigned long durationms);
+		bool periodic(unsigned long durationms, bool first=true);
 		bool isFirstRun(){return YASM::_isFirstRun;};
 		unsigned int runCount(){return YASM::_runCount;};
 	private:

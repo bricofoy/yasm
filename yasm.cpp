@@ -51,7 +51,7 @@ bool YASM::elapsed(unsigned long durationms)
 	return false;
 }
 
-bool YASM::periodic(unsigned long durationms)
+bool YASM::periodic(unsigned long durationms, bool first=true)
 {
 	unsigned long time = (millis()-_lastTime);
 	if( time >= durationms ) 
@@ -59,6 +59,7 @@ bool YASM::periodic(unsigned long durationms)
 		_lastTime += time;
 		return true;
 	}
+	if(first) return _isFirstRun;
 	return false;
 }
 
