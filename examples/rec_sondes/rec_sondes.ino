@@ -200,7 +200,6 @@ void menu_recherche()
 			lcd.print(NBR_SONDE);
 			lcd.print("   ");
 			sensors.requestTemperatures();
-			delay(750); //delay for 12bits resolution
 			lcd.print(sensors.getTempC(adrSonde));
 			lcd.setCursor(0,1);
 			for (uint8_t i = 0; i < 8; i++){
