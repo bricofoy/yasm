@@ -1,4 +1,4 @@
-//This is a pretty advanced example on staes machines usage
+//This is a pretty advanced example on state machines usage
 //It's goal is to search DS18b20 sensors adresses and store them in arduino EEPROM
 //for further use in a heating controller sketch.
 
@@ -199,7 +199,8 @@ void menu_recherche()
 			lcd.print("/");
 			lcd.print(NBR_SONDE);
 			lcd.print("   ");
-			sensors.getTempC(adrSonde);
+			sensors.requestTemperatures();
+			delay(750); //delay for 12bits resolution
 			lcd.print(sensors.getTempC(adrSonde));
 			lcd.setCursor(0,1);
 			for (uint8_t i = 0; i < 8; i++){
