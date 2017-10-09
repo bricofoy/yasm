@@ -15,7 +15,7 @@ loop 5                    loop 5
 loop 6           state1 4 loop 6 	->resume machine execution
 loop 7           state1 5 loop 7 
 loop 8 fisrt run state2   loop 8 	->state change
-loop 9                    loop 9    ->suspend machine from insde a state
+loop 9                    loop 9    ->suspend machine from inside a state
 loop 10                    loop 10 
 loop 11                    loop 11 
 loop 12                    loop 12 
@@ -55,7 +55,7 @@ void loop()
   //This is a way to make nonblocking while or for loops.
   //Here it doesn't really matters because we are inside arduino's loop() and we 
   //enclose all the function, so behaviour will be the same as if we just did 
-  //while(j>20), but if we where in some other place in the sketch, it may be 
+  //while(j<25), but if we where in some other place in the sketch, it may be 
   //necessary to return from the loop at each time we run it,not only when it finish.
   //It's often a good practice when using state machines to make the loops this way.
   
