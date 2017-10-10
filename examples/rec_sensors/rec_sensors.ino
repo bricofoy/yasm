@@ -3,10 +3,15 @@
 //for further use in a heating controller sketch.
 
 //It uses two states machines, one for checking a button state to get user input
-//events, and one to control the sensor searching and recording.
+//events, and one to control the sensor searching and recording, and create a menu
+//on 20*4 alphanumeric LCD.
 
 //One possible upgrade would be to create a helper function to return the button
 //event value instead of checking directly the storage variable.
+//And by the way this is done in the "rec_sensors_btn" example, where it uses the provided
+//BTN class instead of dealing with the button in the sketch.
+
+//the one wire bus is on pin 9, the button on pin 10 and switch to gnd when clicked
 
 
 
@@ -17,14 +22,14 @@
 #include <EEPROM.h>
 #include <yasm.h>
 
-// Data wire is plugged into digital pin 9 on the Arduino
+// OneWire data wire is plugged into digital pin 9 on the Arduino
 #define ONE_WIRE_BUS 9
 
 #define TEMPERATURE_PRECISION 9
 
-#define EEPROM_BASE_ADR 0
+#define EEPROM_BASE_ADR 0 //base address for savong sensors addresses
 #define PIN_SW 10
-#define NBR_SONDE 9 //nombre de sondes à rechercher et stocker en eeprom
+#define NBR_SONDE 9 //number of sensors to research and store in eeprom
 uint8_t numSonde=1;
 
 //button possible events
@@ -46,11 +51,11 @@ LiquidCrystal_I2C lcd(0x20, 4, 5, 6, 0, 1, 2, 3, 7, NEGATIVE);
 YASM menu;
 YASM btn;
 
+uint8_t flagbtn=0;
+uint8_t btnstate=BTN_NONE;
+
 void setup(void)
 {
-  // start serial port
-  Serial.begin(9600);
-  
   //button input
   pinMode(PIN_SW,INPUT_PULLUP);
 
@@ -61,22 +66,19 @@ void setup(void)
   lcd.backlight();
   lcd.clear();
   
-  menu.next(menu_start); //initilizes the states machines
+  //initilizes the states machines
+  menu.next(menu_start); 
   btn.next(btn_wait);
-
 
 }
 
-uint8_t flagbtn=0;
-uint8_t btnstate=BTN_NONE;
 
 void loop(void) //states machines use allow the loop to be minimal
 {
 	flagbtn = !digitalRead(PIN_SW); // ! because button switch to GND
 	btn.run();
 	menu.run();
-	
-	
+
 }
 
 /////////////button state machine///////////////
