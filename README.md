@@ -33,9 +33,9 @@ void loop() {
 ```
 
 Most important thing to remind is the state functions should be non-blocking so the whole system remains responsive no matter
-how complex the task is. So you may avoid using while or delay() or anything that may keep the processor busy for a long time.
-If you need a delay before doing something when entering a state, instead of delay() use the provided timing functions.
-For example if you need a 3 seconds delay when you enter State3, use elapsed(delay) function :
+how complex the task is. So you may avoid using while or `delay()` or anything that may keep the processor busy for a long time.
+If you need a delay before doing something when entering a state, instead of `delay()` use the provided timing functions.
+For example if you need a 3 seconds delay when you enter State3, use `elapsed(delay)` function :
 ```
 void State3()
 {
@@ -64,7 +64,6 @@ class YASM{
     
 `YASM() `
 is class constructor, called when creating your state machine object :
-
 `YASM MyMachine;`
 
 
