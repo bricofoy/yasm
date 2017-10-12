@@ -10,7 +10,7 @@ First you need to create the state machine object with :
 ` YASM MyMachine; `
 
 Then create the states you need. Each state must be a separate function of type "void" with no parameter :
-```
+```cpp
 void State1()
 {
   do_something;  
@@ -19,14 +19,14 @@ void State1()
 ```
 
 Then initialise the machine telling it wich one is the initial state :
-```
+```cpp
 void setup() {
   MyMachine.next(Sate1);
 }
 ```
 
 Then call repeatedly the update function from your main loop :
-```
+```cpp
 void loop() {
   MyMachine.run();
 }
@@ -36,7 +36,7 @@ Most important thing to remind is the state functions should be non-blocking so 
 how complex the task is. So you may avoid using while or `delay()` or anything that may keep the processor busy for a long time.
 If you need a delay before doing something when entering a state, instead of `delay()` use the provided timing functions.
 For example if you need a 3 seconds delay when you enter State3, use `elapsed(delay)` function :
-```
+```cpp
 void State3()
 {
   do_something_imediately;
@@ -47,7 +47,7 @@ void State3()
 ## Complete tour : 
 
 The YASM class provide the following control and timing functions and datas :
-```
+```cpp
 class YASM{
 	public:
 		YASM();
@@ -67,7 +67,11 @@ is class constructor, called when creating your state machine object :
 `YASM MyMachine;`
 
 
-`void next(void (*nextstate)() ) `
+
+
+```cpp
+void next(void (*nextstate)() ) 
+```
 is the function to call when requesting a state change or when giving the initial state to te machine :
 
 `MyMachine.next(StateX);`
