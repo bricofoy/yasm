@@ -105,7 +105,7 @@ Please see blinkLed2 example.
 returns true if called during the first execution of a state, false otherwise.
 
 `unsigned int runCount()`
-returns the number of time current state have been called since the next state change.
+returns the number of time current state have been called since the last state change.
 Usefull to implement non blocking "for" loops inside a state.
 
 
