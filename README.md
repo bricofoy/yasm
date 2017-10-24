@@ -95,7 +95,7 @@ returns the time in milliseconds spent in the current state since the last state
 
 `bool elapsed(timeout) `
 returns true if the timeout (in ms) is elapsed since last state change. It is very convenient to 
-implement delays. Please see blinkLed1 example.
+implement delays. Please see blinkLed example.
 
 `bool periodic(period); `
 returns true periodically, everytime it is called after the period time (in ms) is elapsed (while in the same state)
