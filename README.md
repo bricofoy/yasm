@@ -87,7 +87,7 @@ causes the machine to stop so any further call to run() will do nothing and retu
 state was so it can be resumed by :
 
 `void resume()` 
-resume the machine execcution to the last used state. 
+resume the machine execution to the last used state. 
 A stopped machine can also be restarted using `next(state)` to restart from another state.
 
 `unsigned long timeOnState() `
@@ -95,14 +95,14 @@ returns the time in milliseconds spent in the current state since the last state
 
 `bool elapsed(timeout) `
 returns true if the timeout (in ms) is elapsed since last state change. It is very convenient to 
-implement delays. Please see blinkLed example.
+implement delays. Please see BlinkLed example.
 
 `bool periodic(period); `
 returns true periodically, everytime it is called after the period time (in ms) is elapsed (while in the same state)
-Please see blinkLed2 example.
 
 `bool isFirstRun() `
 returns true if called during the first execution of a state, false otherwise.
+Please see blinkLed2 example.
 
 `unsigned int runCount()`
 returns the number of time current state have been called since the last state change.
