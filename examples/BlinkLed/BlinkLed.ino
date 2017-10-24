@@ -1,7 +1,12 @@
-/* BlinkLed.ino example file for yasm library
-The purpose of this arduino sketch is to blink a led on pin 13
-It creates a state machine with two states : ledOn, ledOff, 
-and uses elapsed(delay_in_ms) timing function to trigger state change */
+/* 
+   BlinkLed.ino example file for yasm library.
+   
+   The purpose of this arduino sketch is to blink a led on pin 13.
+   
+   It creates a state machine with two states : ledOn, ledOff, 
+   and illustrate the use of elapsed(delay_in_ms) timing function to trigger 
+   state change.                                                              
+*/
 
 
 #include <yasm.h>	//include the yasm library
@@ -9,7 +14,7 @@ and uses elapsed(delay_in_ms) timing function to trigger state change */
 #define OnDelay		500 //500ms led "On" state delay
 #define OffDelay	750 //750ms led "Off" state delay
 
-#define LedPin 		13	//pin 13 because most arduino boards provide a led here
+#define LedPin 		13  //pin 13 because most arduino boards provide a led here
 
 YASM led; //declaration of the "led" state machine
 
