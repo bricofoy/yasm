@@ -23,7 +23,7 @@
 
 #define TEMPERATURE_PRECISION 9
 
-#define EEPROM_BASE_ADR 0 //base address for savong sensors addresses
+#define EEPROM_BASE_ADR 0 //base address for saving sensors addresses
 #define PIN_SW 10
 #define NBR_SONDE 9 //number of sensors to research and store in eeprom
 uint8_t numSonde=1;
