@@ -61,8 +61,8 @@ void setup(void)
 
 void loop(void) //states machine use allow the loop to be minimal
 {
-	btn.update(!digitalRead(PIN_BTN)); // ! because btn switch to gnd
-    menu.run(); 
+	btn.update(!digitalRead(PIN_SW)); // ! because btn switch to gnd
+    	menu.run(); 
 }
 
 
