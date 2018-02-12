@@ -79,12 +79,10 @@ void menu_start()
 	}
 	if(btn.state(BTN_CLICK)) {
 		menu.next(menu_recherche);
-		lcd.clear();
 	}	
 	if(btn.state(BTN_LONGCLICK)) {
 		menu.next(menu_affiche);
 		numSonde=1;
-		//lcd.clear();
 	}
 	if(numSonde>NBR_SONDE) menu.next(menu_fin);
 }
@@ -110,11 +108,9 @@ void menu_affiche()
 	}
 	if(btn.state(BTN_CLICK)) {
 		menu.next(menu_affiche_next);
-		lcd.clear();
 	}
 	if(btn.state(BTN_LONGCLICK)) {
 		menu.next(menu_start);
-		lcd.clear();
 		numSonde=1;
 	}
 }
@@ -132,7 +128,6 @@ void menu_fin()
 	}	
 	if(btn.state(BTN_LONGCLICK)) {
 		menu.next(menu_affiche);
-		lcd.clear();
 	}
 }
 
