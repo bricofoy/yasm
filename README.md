@@ -16,12 +16,16 @@ void State1()
   do_something;  
   if (need_trigger_state_change)  MyMachine.next(State2);
 }
+
+void State2()
+{
+  .....
 ```
 
 Then initialise the machine telling it wich one is the initial state :
 ```cpp
 void setup() {
-  MyMachine.next(Sate1);
+  MyMachine.next(State1);
 }
 ```
 
@@ -51,7 +55,7 @@ The YASM class provide the following control and timing functions and datas :
 class YASM{
 	public:
 		YASM();
-		void next(void (*)() );
+		void next(void (*)(), bool);
 		bool run();
 		void stop();
 		void resume();
@@ -60,6 +64,7 @@ class YASM{
 		bool periodic(unsigned long);
 		bool isFirstRun();
 		unsigned int runCount();
+		bool isInState(void (*)());
 ```		
     
 `YASM() `
@@ -70,11 +75,18 @@ is class constructor, called when creating your state machine object :
 
 
 ```cpp
-void next(void (*nextstate)() ) 
+void next(void (*nextstate)(), bool reset=false) 
 ```
 is the function to call when requesting a state change or when giving the initial state to te machine :
-
 `MyMachine.next(StateX);`
+The optional "reset" bool parameter is usefull to force the reset running counter and timers if a state re-enters itself, or needs to be reset by external process :
+```cpp
+void State1()
+{
+  do_something;  
+  if (need_reset_current_state)  MyMachine.next(State1, true);
+}
+```
 
 `bool run() `
 is the update function. You need to keep calling this function to keep the machine running. 
@@ -107,6 +119,9 @@ Please see blinkLed2 example.
 `unsigned int runCount()`
 returns the number of time current state have been called since the last state change.
 Usefull to implement non blocking "for" loops inside a state.
+
+`bool isInState(void (*state)())`
+returns true if the given pointer is equal to the running state pointer, false otherwise. This is usefull if you need to know from outside the machine if it is in a particular state.
 
 
 
