@@ -37,7 +37,7 @@ void loop() {
 ```
 
 Most important thing to remind is the state functions should be non-blocking so the whole system remains responsive no matter
-how complex the task is. So you may avoid using while or `delay()` or anything that may keep the processor busy for a long time.
+how complex the task is. So you may avoid using `while` or `delay()` or anything that may keep the processor busy for a long time.
 If you need a delay before doing something when entering a state, instead of `delay()` use the provided timing functions.
 For example if you need a 3 seconds delay when you enter State3, use `elapsed(delay)` function :
 ```cpp
@@ -90,13 +90,10 @@ void State1()
 
 `bool run() `
 is the update function. You need to keep calling this function to keep the machine running. 
-Each time the function is called the current state function is launched. It returns true if the machine is actually 
-running or false if it is stopped (or not initialized).
+Each time the function is called the current state function is launched. It returns true if the machine is actually running or false if it is stopped (or not initialized).
 
 `void stop() `
-stops the machine. This function can be called at any moment, even from inside the current running state. It
-causes the machine to stop so any further call to run() will do nothing and return false. It also records what the current 
-state was so it can be resumed by :
+stops the machine. This function can be called at any moment, even from inside the current running state. It causes the machine to stop so any further call to run() will do nothing and return false. It also records what the current state was so it can be resumed by :
 
 `void resume()` 
 resume the machine execution to the last used state. 
@@ -106,8 +103,7 @@ A stopped machine can also be restarted using `next(state)` to restart from anot
 returns the time in milliseconds spent in the current state since the last state change.
 
 `bool elapsed(timeout) `
-returns true if the timeout (in ms) is elapsed since last state change. It is very convenient to 
-implement delays. Please see BlinkLed example.
+returns true if the timeout (in ms) is elapsed since last state change. It is very convenient to implement delays. Please see BlinkLed example.
 
 `bool periodic(period); `
 returns true periodically, everytime it is called after the period time (in ms) is elapsed (while in the same state)
@@ -118,7 +114,7 @@ Please see blinkLed2 example.
 
 `unsigned int runCount()`
 returns the number of time current state have been called since the last state change.
-Usefull to implement non blocking "for" loops inside a state.
+Usefull to implement non blocking `for` loops inside a state.
 
 `bool isInState(void (*state)())`
 returns true if the given pointer is equal to the running state pointer, false otherwise. This is usefull if you need to know from outside the machine if it is in a particular state.

@@ -1,4 +1,35 @@
+/* 
+				YASM - Yet Another State Machine library
+
+Lightweight library for creating function pointer based state machines
+
+Copyright 2016/2017 bricofoy bricofoy@free.fr
+
+
+Library provide basic functions for managing state machine execution
+and state running timings and counts, and it is intended to be very 
+easy to use.
+
+Please see examples and README for documentation.
+
+
+
+This library is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 3 of the License, or (at your option) any later version.
+
+This library is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public
+License along with this library; if not, write to the Free Software
+Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA */
+
 #include "btn.h"
+
 //static(global) pointer on BTN object, updated by the update() method wich is not 
 //static to the current used BTN object when calling it. 
 //So through it static member functions can still acces non-static variables 
@@ -35,13 +66,17 @@ byte BTN::state()
 
 void BTN::btn_wait()
 {
-	if(BTN::_this->_SM.elapsed(50)) if(BTN::_this->_input) BTN::_this->_SM.next(BTN::btn_debounce);
+	if(BTN::_this->_SM.elapsed(50)) 
+        if(BTN::_this->_input) 
+            BTN::_this->_SM.next(BTN::btn_debounce);
 }
 
 void BTN::btn_debounce()
 {
-	if(!BTN::_this->_input) BTN::_this->_SM.next(BTN::btn_wait);
-	if(BTN::_this->_SM.elapsed(BTN_D_DEBOUNCE)) BTN::_this->_SM.next(BTN::btn_check);
+	if(!BTN::_this->_input) 
+        BTN::_this->_SM.next(BTN::btn_wait);
+	if(BTN::_this->_SM.elapsed(BTN_D_DEBOUNCE)) 
+        BTN::_this->_SM.next(BTN::btn_check);
 }
 
 void BTN::btn_check()
@@ -71,10 +106,12 @@ void BTN::btn_checkdouble()
 
 void BTN::btn_doubleclick()
 {
-	if(!BTN::_this->_input) BTN::_this->_SM.next(BTN::btn_wait);
+	if(!BTN::_this->_input) 
+        BTN::_this->_SM.next(BTN::btn_wait);
 }
 
 void BTN::btn_longclick()
 {
-	if(!BTN::_this->_input) BTN::_this->_SM.next(BTN::btn_wait);
+	if(!BTN::_this->_input) 
+        BTN::_this->_SM.next(BTN::btn_wait);
 }
