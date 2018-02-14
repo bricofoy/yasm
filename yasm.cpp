@@ -1,8 +1,8 @@
 #include "yasm.h"
 
-void YASM::next(void (*pnextstate)())
+void YASM::next(void (*pnextstate)(), bool reset=false)
 {
-	if (pnextstate == _pState) return; //we do nothing if we stay in the same state
+	if ((!reset) && (pnextstate == _pState)) return; //we do nothing if we stay in the same state
 
 	//we change the state so we set the associated values as needed
 	_isFirstRun = true; 
