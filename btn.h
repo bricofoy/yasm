@@ -55,6 +55,10 @@ class BTN{
 		YASM _SM;
 		bool _input;
 		byte _state=BTN_OFF;
+        //static(global) pointer on BTN object, updated by the update() method wich is not 
+        //static to the current used BTN object when calling it. 
+        //So through it static member functions can still acces non-static variables 
+        //corresponding to the right BTN object if more than one are in use.
 		static BTN* _this;
 		static void btn_wait();
 		static void btn_debounce();

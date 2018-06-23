@@ -30,7 +30,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA */
 
 #include "yasm.h"
 
-void YASM::next(void (*pnextstate)(), bool reset=false)
+void YASM::next(void (*pnextstate)(), bool reset/*=false*/)
 {
 	if ((!reset) && (pnextstate == _pState)) return; //we do nothing if we stay in the same state
 
@@ -81,7 +81,7 @@ bool YASM::elapsed(unsigned long durationms)
 	return false;
 }
 
-bool YASM::periodic(unsigned long durationms, bool first=true)
+bool YASM::periodic(unsigned long durationms, bool first/*=true*/)
 {
 	unsigned long time = (millis()-_lastTime);
 	if( time >= durationms ) 
