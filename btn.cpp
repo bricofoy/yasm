@@ -34,7 +34,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA */
 //static to the current used BTN object when calling it. 
 //So through it static member functions can still acces non-static variables 
 //corresponding to the right BTN object if more than one are in use.
-//static BTN* BTN::_this;
+BTN* BTN::_this;
 
 /////////////acces methods//////////////////////
 
