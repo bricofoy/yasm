@@ -39,7 +39,7 @@ void ledOn()
 	//this is the "On" state so we turn on the led, but we only need to turn on
 	//the pin when entering this state, not every time the state is called.
 	//So we check if we run the state for the first time :
-	if(led.isFrstRun()) 
+	if(led.isFirstRun()) 
 		digitalWrite(LedPin, HIGH); //and eventually we turn on the led
 	
 	if(led.elapsed(OnDelay)) //check if the delay for the "on" state is elapsed
@@ -51,7 +51,7 @@ void ledOff()
 	//this is the "Off" state so we turn off the led, but we only need to turn off
 	//the pin when entering this state, not every time the state is called.
 	//So we check if we run the state for the first time :
-	if(led.isFrstRun())
+	if(led.isFirstRun())
 		digitalWrite(LedPin, LOW); //and eventually we turn off the led
 	
 	if(led.elapsed(OffDelay)) //check if the delay for the "off" state is elapsed
