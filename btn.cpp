@@ -62,6 +62,11 @@ byte BTN::state()
 	return ret;
 }
 
+bool BTN::available()
+{
+	return (_state!=BTN_OFF);
+}
+
 /////////////button state machine///////////////
 
 void BTN::btn_wait()

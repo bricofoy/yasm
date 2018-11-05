@@ -51,6 +51,7 @@ class BTN{
 		void update(bool);
 		bool state(byte);
 		byte state(void);
+		bool available();
 	private:
 		YASM _SM;
 		bool _input;
