@@ -76,10 +76,10 @@ void BTN::btn_debounce()
 	if(!BTN::_this->_input) 
         BTN::_this->_SM.next(BTN::btn_wait);
 	if(BTN::_this->_SM.elapsed(BTN_D_DEBOUNCE)) 
-        BTN::_this->_SM.next(BTN::btn_check);
+        BTN::_this->_SM.next(BTN::btn_checksimple);
 }
 
-void BTN::btn_check()
+void BTN::btn_checksimple()
 {
 	if(BTN::_this->_SM.elapsed(BTN_D_LONGCLICK)) { 
 		BTN::_this->_SM.next(BTN::btn_longclick); 
@@ -99,19 +99,28 @@ void BTN::btn_checkdouble()
 		return;
 	}
 	if(BTN::_this->_input) {
-		BTN::_this->_SM.next(BTN::btn_doubleclick);
-		BTN::_this->_state = BTN_DOUBLECLICK;
+		BTN::_this->_SM.next(BTN::btn_checktriple);
+		//BTN::_this->_state = BTN_DOUBLECLICK;
 	}
 }
 
-void BTN::btn_doubleclick()
+void BTN::btn_checktriple()
+{
+	if(BTN::_this->_SM.elapsed(BTN_D_DOUBLECLICK)) { 
+		BTN::_this->_SM.next(BTN::btn_wait); 
+		BTN::_this->_state = BTN_DOUBLECLICK;
+		return;
+	}
+	if(BTN::_this->_input) {
+		BTN::_this->_SM.next(BTN::btn_waitrelease);
+		BTN::_this->_state = BTN_TRIPLECLICK;
+	}
+}
+
+void BTN::btn_waitrelease()
 {
 	if(!BTN::_this->_input) 
         BTN::_this->_SM.next(BTN::btn_wait);
 }
 
-void BTN::btn_longclick()
-{
-	if(!BTN::_this->_input) 
-        BTN::_this->_SM.next(BTN::btn_wait);
-}
+

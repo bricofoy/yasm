@@ -51,6 +51,7 @@ class BTN{
 		void update(bool);
 		bool state(byte);
 		byte state(void);
+		bool available();
 	private:
 		YASM _SM;
 		bool _input;
@@ -62,9 +63,9 @@ class BTN{
 		static BTN* _this;
 		static void btn_wait();
 		static void btn_debounce();
-		static void btn_check();
+		static void btn_checksimple();
 		static void btn_checkdouble();
-		static void btn_longclick();
-		static void btn_doubleclick();
+		static void btn_checktriple();
+		static void btn_waitrelease();
 };
 #endif
