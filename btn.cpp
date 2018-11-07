@@ -104,6 +104,16 @@ void BTN::btn_checkdouble()
 	}
 }
 
+void BTN::btn_debouncedouble()
+{
+	if(!BTN::_this->_input) {
+		BTN::_this->_SM.next(BTN::btn_wait);
+		BTN::_this->_state = BTN_DOUBLECLICK;
+	}
+	if(BTN::_this->_SM.elapsed(BTN_D_DEBOUNCE)) 
+		BTN::_this->_SM.next(BTN::btn_checksimple);
+}
+
 void BTN::btn_checktriple()
 {
 	if(BTN::_this->_SM.elapsed(BTN_D_DOUBLECLICK)) { 
