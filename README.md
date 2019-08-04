@@ -3,11 +3,19 @@
 
 *A library for easy creation and managing of states machines based on function pointers.*
 
+## Installation :
+
+Library now directly available from Arduino IDE library manager. Just select YASM in the list and click install.
+
+
 ## Quick start :
 
-First you need to create the state machine object with :
+First you need to include the library header, then create the state machine object with :
+```cpp
+#include "yasm.h"
 
-` YASM MyMachine; `
+YASM MyMachine; 
+```
 
 Then create the states you need. Each state must be a separate function of type "void" with no parameter :
 ```cpp
