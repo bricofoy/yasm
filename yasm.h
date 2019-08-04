@@ -45,7 +45,7 @@ class YASM{
 		bool periodic(unsigned long durationms, bool first=true);
 		bool isFirstRun(){return YASM::_isFirstRun;};
 		unsigned int runCount(){return YASM::_runCount;};
-        	bool isInState(void (*pstate)()){return pstate==YASM::_pState;};
+		bool isInState(void (*pstate)()){return pstate==YASM::_pState;};
 	private:
 		void (*_pState)();
 		void (*_pLastState)();
