@@ -38,7 +38,7 @@ class YASM{
 		YASM(){_pLastState=_pState=YASM::nop;};
 		void next(void (*pnextsate)(), bool reset=false);
 		bool run();
-        void stop();{YASM::_pState=YASM::nop;};
+        void stop(){YASM::_pState=YASM::nop;};
 		void resume(){YASM::_pState=YASM::_pLastState;};
 		unsigned long timeOnState(){return (millis()-YASM::_enterTime);};
 		bool elapsed(unsigned long durationms);
