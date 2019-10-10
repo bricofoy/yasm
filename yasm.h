@@ -28,17 +28,17 @@ You should have received a copy of the GNU Lesser General Public
 License along with this library; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA */
 
-#define YASM_VERSION "1.0.3"
+#define YASM_VERSION "1.0.2"
 
 #ifndef YASM_h
 #define YASM_h
 #include "Arduino.h"
 class YASM{
 	public:
-		YASM(){_pLastState=_pState=YASM::nop;};
+		YASM(){_pState=YASM::nop;};
 		void next(void (*pnextsate)(), bool reset=false);
 		bool run();
-        void stop();{YASM::_pState=YASM::nop;};
+		void stop();
 		void resume(){YASM::_pState=YASM::_pLastState;};
 		unsigned long timeOnState(){return (millis()-YASM::_enterTime);};
 		bool elapsed(unsigned long durationms);
