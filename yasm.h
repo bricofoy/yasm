@@ -51,7 +51,7 @@ class YASM{
 		void (*_pLastState)();
 		unsigned long _enterTime;	
 		unsigned long _lastTime;
-		double _runCount;
+		unsigned int _runCount;
 		static void nop(){};
 		bool _isFirstRun;
 };
