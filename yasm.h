@@ -33,26 +33,31 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA */
 #ifndef YASM_h
 #define YASM_h
 #include "Arduino.h"
+
 class YASM{
 	public:
-		YASM(){_pLastState=_pState=YASM::nop;};
+        YASM(){_pLastState=_pState=YASM::nop;};
 		void next(void (*pnextsate)(), bool reset=false);
 		bool run();
-        void stop(){YASM::_pState=YASM::nop;};
-		void resume(){YASM::_pState=YASM::_pLastState;};
+        void stop(){YASM::_stateInfos.isStopped=true;};
+        void resume(){YASM::_stateInfos.isStopped=false;};
 		unsigned long timeOnState(){return (millis()-YASM::_enterTime);};
 		bool elapsed(unsigned long durationms);
 		bool periodic(unsigned long durationms, bool first=true);
-		bool isFirstRun(){return YASM::_isFirstRun;};
+        bool isFirstRun(){return YASM::_stateInfos.isFirstRun;};
 		unsigned int runCount(){return YASM::_runCount;};
 		bool isInState(void (*pstate)()){return pstate==YASM::_pState;};
 	private:
+        void nop(){};
 		void (*_pState)();
 		void (*_pLastState)();
 		unsigned long _enterTime;	
 		unsigned long _lastTime;
 		unsigned int _runCount;
-		static void nop(){};
-		bool _isFirstRun;
+        struct _stateInfos_t {
+            bool isFirstRun : 1;
+            bool needReset : 1;
+            bool isStopped : 1;
+        } _stateInfos;
 };
 #endif
