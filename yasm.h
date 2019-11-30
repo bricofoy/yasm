@@ -28,7 +28,7 @@ You should have received a copy of the GNU Lesser General Public
 License along with this library; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA */
 
-#define YASM_VERSION "1.0.3"
+#define YASM_VERSION "1.0.4"
 
 #ifndef YASM_h
 #define YASM_h
@@ -36,11 +36,11 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA */
 
 class YASM{
 	public:
-        YASM(){_pLastState=_pState=YASM::nop;};
+        YASM();
 		void next(void (*pnextsate)(), bool reset=false);
 		bool run();
         void stop(){YASM::_stateInfos.isStopped=true;};
-        void resume(){YASM::_stateInfos.isStopped=false;};
+        void resume();
 		unsigned long timeOnState(){return (millis()-YASM::_enterTime);};
 		bool elapsed(unsigned long durationms);
 		bool periodic(unsigned long durationms, bool first=true);
@@ -48,9 +48,8 @@ class YASM{
 		unsigned int runCount(){return YASM::_runCount;};
 		bool isInState(void (*pstate)()){return pstate==YASM::_pState;};
 	private:
-        void nop(){};
 		void (*_pState)();
-		void (*_pLastState)();
+		//void (*_pLastState)();
 		unsigned long _enterTime;	
 		unsigned long _lastTime;
 		unsigned int _runCount;
