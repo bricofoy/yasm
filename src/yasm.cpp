@@ -3,7 +3,7 @@
 
 Lightweight library for creating function pointer based state machines
 
-Copyright 2016/2017 bricofoy bricofoy@free.fr
+Copyright 2016/2019 bricofoy bricofoy@free.fr
 
 
 Library provide basic functions for managing state machine execution
@@ -32,8 +32,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA */
 
 YASM::YASM()
 {
+    //
     _stateInfos.isStopped = true;
-    //set the pointer to 0 just in case resume() is called before next()
+    //set the state pointer to NULL just in case resume() is called before next()
     _pState=NULL;
 }
 
@@ -92,7 +93,8 @@ void YASM::resume()
 
 bool YASM::elapsed(unsigned long durationms)
 {
-	if (YASM::timeOnState()>durationms) return true;
+	if (YASM::timeOnState()>durationms) 
+        return true;
 	return false;
 }
 
@@ -103,7 +105,8 @@ bool YASM::periodic(unsigned long durationms, bool first/*=true*/)
 		_lastTime += time;
 		return true;
 	}
-	if(first) return _stateInfos.isFirstRun;
+	if(first) 
+        return _stateInfos.isFirstRun;
 	return false;
 }
 

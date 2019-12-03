@@ -3,7 +3,7 @@
 
 Lightweight library for creating function pointer based state machines
 
-Copyright 2016/2017 bricofoy bricofoy@free.fr
+Copyright 2016/2019 bricofoy bricofoy@free.fr
 
 
 Library provide basic functions for managing state machine execution
