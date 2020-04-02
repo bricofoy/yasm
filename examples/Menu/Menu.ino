@@ -107,6 +107,7 @@ void setup()
 	lcd.begin(16, 2);     //set up the LCD's number of columns and rows
 	
 	menu.next(menu_start); //set the initial state of the menu state machine
+    lde.next(led_off);
 }
 
 void loop()
@@ -159,3 +160,32 @@ void menu_select()
 } 
 
 
+/////////////led S. M. //////////////////////////////////
+void led_off()
+{
+  digitalWrite(PIN_LED, LOW);
+}
+
+void led_on()
+{
+  digitalWrite(PIN_LED, HIGH);
+}
+
+void led_blink1()
+{
+  if(led.periodic(paramTon)) digitalWrite(PIN_LED, (digitalRead(PIN_LED)==HIGH?LOW:HIGH) );
+}
+
+void led_blink2_on()
+{
+  digitalWrite(PIN_LED, HIGH);
+  
+  if(led.elapsed(paramTon)) led.next(led_blink2_off);
+}
+
+void led_blink2_off()
+{
+  digitalWrite(PIN_LED, LOW);
+  
+  if(led.elapsed(paramToff)) led.next(led_blink2_on);
+}
