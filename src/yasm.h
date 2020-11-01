@@ -28,7 +28,7 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA */
 
-#define YASM_VERSION "1.0.4"
+#define YASM_VERSION "1.0.5"
 
 #ifndef YASM_h
 #define YASM_h
@@ -40,7 +40,7 @@ public:
   void next(void (*pnextsate)(), bool reset=false);
   bool run();
   void stop(){YASM::_stateInfos.isStopped=true;};
-  void resume();
+  void resume(bool reset=false);
   unsigned long timeOnState(){return (millis()-YASM::_enterTime);};
   bool elapsed(unsigned long durationms);
   bool periodic(unsigned long durationms, bool first=true);

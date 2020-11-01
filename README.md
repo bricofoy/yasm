@@ -66,7 +66,7 @@ class YASM{
 		void next(void (*)(), bool);
 		bool run();
 		void stop();
-		void resume();
+		void resume(bool);
 		unsigned long timeOnState();
 		bool elapsed(unsigned long);
 		bool periodic(unsigned long);
@@ -103,8 +103,9 @@ Each time the function is called the current state function is launched. It retu
 `void stop() `
 stops the machine. This function can be called at any moment, even from inside the current running state. It causes the machine to stop so any further call to run() will do nothing and return false. It also records what the current state was so it can be resumed by :
 
-`void resume()` 
+`void resume(bool reset=false)` 
 resume the machine execution to the last used state. 
+The optional "reset" bool parameter acts just like in next(). Usefull sometimes (menus, etc)
 A stopped machine can also be restarted using `next(state)` to restart from another state.
 
 `unsigned long timeOnState() `
@@ -124,7 +125,7 @@ Please see blinkLed2 example.
 returns the number of time current state have been called since the last state change.
 Usefull to implement non blocking `for` loops inside a state.
 
-`bool isInState(void (*state)())`
+`bool isInState(void (*pstate)())`
 returns true if the given pointer is equal to the running state pointer, false otherwise. This is usefull if you need to know from outside the machine if it is in a particular state.
 
 

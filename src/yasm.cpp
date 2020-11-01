@@ -82,13 +82,16 @@ bool YASM::run()
   return true; 
 }
 
-void YASM::resume()
+void YASM::resume(bool reset/*=false*/)
 {
   //if pointer==NULL then machine is not initialised so we do nothing more
   if(_pState==NULL) return;
   
   //or just remove the stop flag
   _stateInfos.isStopped=false;
+  //and if asked, reset the current state
+  if(reset)
+    _stateInfos.needReset=true;
 }
 
 bool YASM::elapsed(unsigned long durationms)
